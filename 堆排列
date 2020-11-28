@@ -1,0 +1,61 @@
+def twobrunch(data):
+	import math
+	for i in range(math.floor(len(data)/2), -1, -1):
+		rank(data, i)
+
+
+
+
+
+
+def swap(data, a, b):
+	data[a], data[b] = data[b], data[a]
+
+
+
+def rank(data, i):
+	left = 2*i + 1
+	right = 2*i + 2
+	largest = i
+	#print(left, right, largest)
+	if left < arrlen and data[left] > data[largest]:
+		largest = left
+	if right < arrlen and data[right] > data[largest]:
+		largest =right
+	if largest != i:
+		swap(data, i, largest)
+		rank(data, largest)
+
+
+
+
+
+
+
+
+def run(data):
+	global arrlen
+	arrlen =len(data)
+	twobrunch(data)
+	for i in range(len(data)-1,0,-1):
+		swap(data,i, 0)
+		arrlen -= 1
+		rank(data, 0)
+
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+	import random
+	import numpy
+	data = [random.randint(-100, 100) for _ in range(6)]
+	run(data)
+	print(data)
